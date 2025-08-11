@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "mineland",
+  "version": "${version}",
+  "name": "Mineland",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/mineland/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "noobsdev.mineland.MinelandClient",
+      "noobsdev.mineland.CommandsHandlerClient"
+    ]
+  },
+  "mixins": [
+    "mineland.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric": "*",
+    "minecraft": "1.20.4"
+  }
+}
