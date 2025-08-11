@@ -4,25 +4,47 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 public class httpSend {
-    public static void sendResponse(List<String> bodies) {
-        HttpClient client = HttpClient.newHttpClient();
+    private static final String URL = "https://6898bc8addf05523e55fb2b3.mockapi.io/api/v1/games";
+    private static final HttpClient client = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(10))
+            .build();
 
-        List<CompletableFuture<HttpResponse<String>>> futures = bodies.stream()
-                .map(body -> {
-                    HttpRequest req = HttpRequest.newBuilder()
-                            .uri(URI.create("https://6898bc8addf05523e55fb2b3.mockapi.io/api/v1/games"))
-                            .header("Content-Type", "application/json")
-                            .PUT(HttpRequest.BodyPublishers.ofString(body)) // заменили POST на PUT
-                            .build();
-                    return client.sendAsync(req, HttpResponse.BodyHandlers.ofString());
-                })
-                .toList();
-        futures.forEach(CompletableFuture::join);
+    public static String delete() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(URL + "/1"))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() + ": " + response.body();
+    }
+
+    public static String get() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(URL))
+                .header("Accept", "application/json")
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() + ": " + response.body();
+    }
+
+    public static String post(List<String> stringList) throws Exception {
+        String body = "[" + String.join(",", stringList) + "]";
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(URL))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() + ": " + response.body();
     }
 }
 

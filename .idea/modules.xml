@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Mineland.client.iml" filepath="$PROJECT_DIR$/.idea/modules/Mineland.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Mineland.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Mineland.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Mineland.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Mineland.test.iml" />
     </modules>
   </component>

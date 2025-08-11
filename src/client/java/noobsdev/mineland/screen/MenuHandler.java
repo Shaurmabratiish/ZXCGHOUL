@@ -25,6 +25,7 @@ public class MenuHandler {
             for(int iteration : slots) {
 
                 position += 1;
+                player.sendMessage("iter: " + position);
                 ItemStack stack = handler.getSlot(iteration).getStack();
                 if (stack.isEmpty()) {
                     player.sendMessage("§7Пустой слот " + iteration);
