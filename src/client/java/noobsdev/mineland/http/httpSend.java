@@ -1,5 +1,8 @@
 package noobsdev.mineland.http;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -8,6 +11,9 @@ import java.time.Duration;
 import java.util.List;
 
 public class httpSend {
+
+    @Getter
+    @Setter
     private String URL;
     private static final HttpClient client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
