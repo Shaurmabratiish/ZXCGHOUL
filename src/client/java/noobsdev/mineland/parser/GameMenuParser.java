@@ -1,7 +1,5 @@
-package noobsdev.mineland.screen;
+package noobsdev.mineland.parser;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
@@ -12,10 +10,7 @@ import noobsdev.mineland.utilities.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.StringUtils.substring;
-
-public class MenuHandler {
-    private final Gson gson = new Gson();
+public class GameMenuParser {
     public static List<String> getParseItemsData(ScreenHandler handler) {
         Player player = new Player();
         try {
@@ -37,7 +32,6 @@ public class MenuHandler {
                         player.getClient().options.advancedItemTooltips ? TooltipContext.Default.ADVANCED : TooltipContext.Default.BASIC
                 );
                 if (tooltip.isEmpty()) {
-                    player.getClient().player.sendMessage(Text.of("§7Нет подсказки для слота " + iteration));
                     continue;
                 }
 
@@ -53,7 +47,7 @@ public class MenuHandler {
                 Integer points = Integer.valueOf(tooltip.get(pointsIndex).getString().replaceAll("\\D+", ""));
                 Integer online = Integer.valueOf(tooltip.get(onlineIndex).getString().replaceAll("\\D+", ""));
                 player.sendMessage("\n\n id: " + id + "\n name: " + name + "\n online: " + online + "\n points: " + points);
-                String serData = GsonUtility.serialize(name, author, id, online, points);
+                String serData = GsonUtility.serializeGame(name, author, id, online, points);
                 gamesData.add(serData);
             }
             return gamesData;
@@ -62,4 +56,5 @@ public class MenuHandler {
             return null;
         }
     }
+
 }

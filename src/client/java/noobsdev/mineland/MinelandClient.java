@@ -5,7 +5,8 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import noobsdev.mineland.commands.StartCommand;
 import noobsdev.mineland.http.httpSend;
-import noobsdev.mineland.screen.MenuHandler;
+import noobsdev.mineland.parser.GameMenuParser;
+import noobsdev.mineland.parser.ScoreboardParser;
 import noobsdev.mineland.utilities.Player;
 
 import java.util.ArrayList;
@@ -42,8 +43,17 @@ public class MinelandClient implements ClientModInitializer {
             }
 
             try {
-                pl.sendMessage(httpSend.delete());
-                pl.sendMessage(httpSend.post(MenuHandler.getParseItemsData(pl.getClient().player.currentScreenHandler)));
+                httpSend games = new httpSend("https://6898bc8addf05523e55fb2b3.mockapi.io/api/v1/games");
+                httpSend creative = new httpSend("https://6898bc8addf05523e55fb2b3.mockapi.io/api/v1/creative");
+                pl.sendMessage(games.delete("1"));
+                pl.sendMessage(creative.delete("1"));
+                pl.sendMessage(games.postArray(GameMenuParser.getParseItemsData(pl.getClient().player.currentScreenHandler)));
+
+                pl.getClient().execute(() -> pl.getClient().player.closeHandledScreen());
+
+                pl.sendMessage(creative.postArray(ScoreboardParser.parse()));
+
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

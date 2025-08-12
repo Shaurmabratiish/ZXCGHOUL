@@ -8,14 +8,18 @@ import java.time.Duration;
 import java.util.List;
 
 public class httpSend {
-    private static final String URL = "https://6898bc8addf05523e55fb2b3.mockapi.io/api/v1/games";
+    private String URL;
     private static final HttpClient client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
 
-    public static String delete() throws Exception {
+    public httpSend(String URL) {
+        this.URL = URL;
+    }
+
+    public String delete(String dataId) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(URL + "/1"))
+                .uri(URI.create(URL + "/" + dataId))
                 .header("Content-Type", "application/json")
                 .DELETE()
                 .build();
@@ -24,7 +28,7 @@ public class httpSend {
         return response.statusCode() + ": " + response.body();
     }
 
-    public static String get() throws Exception {
+    public String get() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(URL))
                 .header("Accept", "application/json")
@@ -35,12 +39,22 @@ public class httpSend {
         return response.statusCode() + ": " + response.body();
     }
 
-    public static String post(List<String> stringList) throws Exception {
+    public String postArray(List<String> stringList) throws Exception {
         String body = "[" + String.join(",", stringList) + "]";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(URL))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() + ": " + response.body();
+    }
+    public String postString(String jsonString) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(URL))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
