@@ -37,7 +37,16 @@ public class GameMenuParser {
 
                 String name = tooltip.get(0).getString();
                 if (name.isEmpty()) name = "Без названия";
-                String author = tooltip.get(1).getString().split(" ", 3)[2];
+
+                String author = "";
+                if (tooltip.size() > 1) {
+                    String[] parts = tooltip.get(1).getString().split(" ", 3);
+                    if (parts.length >= 3) {
+                        author = parts[2];
+                    }
+                }else {
+                    author = "Автор Неизвестен";
+                }
 
                 int idIndex = tooltip.size() - 5;
                 int pointsIndex = tooltip.size() - 4;
@@ -52,7 +61,7 @@ public class GameMenuParser {
             }
             return gamesData;
         }catch (Exception e) {
-            player.sendCommand(e.getMessage());
+            player.sendMessage(e.getMessage());
             return null;
         }
     }

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import noobsdev.mineland.MinelandClient;
+import noobsdev.mineland.http.CreateSendHttpsRequets;
 import noobsdev.mineland.utilities.Player;
 
 public class StartCommand {
@@ -21,7 +22,7 @@ public class StartCommand {
                     MinelandClient.lastRun = now;
                     player.sendCommand("g");
                     start = true;
-                    MinelandClient.delay();
+                    CreateSendHttpsRequets.start();
                 }else {
                     player.sendMessage("Цикл уже запущен");
                     return 1;
