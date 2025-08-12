@@ -31,14 +31,17 @@ public class CreateSendHttpsRequets {
 
                 PacketsUtility.clickSlot(0);
 
-                Thread.sleep(2000);
+                Thread.sleep(3000);
 
                 pl.sendMessage(games.postArray(GameMenuParser.getParseItemsData(pl.getClient().player.currentScreenHandler)));
 
                 Thread.sleep(1000);
+                PacketsUtility.rightClickNPC(ScoreboardParser.findRublesNPC());
 
-                pl.getClient().execute(() -> pl.getClient().player.closeHandledScreen());
+                Thread.sleep(2000);
+
                 pl.sendMessage(creative.postArray(ScoreboardParser.parse()));
+                pl.getClient().execute(() -> pl.getClient().player.closeHandledScreen());
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
