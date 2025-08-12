@@ -3,4 +3,11 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="21" />
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-AoutRefMapFile=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\classes\java\client\client-Mineland-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\loom-cache\mixin-map-net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2.client.tiny -AinMapFileNamedIntermediary=C:\Users\Nikita\.gradle\caches\fabric-loom\1.20.4\net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2\mappings.tiny" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ZXCGHOUL.main" options="-AoutRefMapFile=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\classes\java\main\Mineland-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\loom-cache\mixin-map-net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2.main.tiny -AinMapFileNamedIntermediary=C:\Users\Nikita\.gradle\caches\fabric-loom\1.20.4\net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2\mappings.tiny" />
+      <module name="ZXCGHOUL.test" options="-AoutRefMapFile=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\classes\java\test\test-Mineland-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\Nikita\IdeaProjects\ZXCGHOUL\build\loom-cache\mixin-map-net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2.test.tiny -AinMapFileNamedIntermediary=C:\Users\Nikita\.gradle\caches\fabric-loom\1.20.4\net.fabricmc.yarn.1_20_4.1.20.4+build.3-v2\mappings.tiny" />
+    </option>
+  </component>
 </project>
